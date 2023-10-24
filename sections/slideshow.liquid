@@ -1,33 +1,49 @@
 {% stylesheet %}
   .bg-wrapper{
     width:100%;
-    height:400px;
+    height:500px;
 
+  }
+  .slide-show{
+    position:relative;
   }
   .bg-wrapper img{
     width:100%;
     height:100%;
     object-fit:cover;
   }
+  .content-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 {% endstylesheet %}
 
 <section>
   {% for slide in section.blocks %}
-    <h3>Hello bangladesh</h3>
-    <div class="bg-wrapper">
-      <img src="{{slide.settings.bg_img |  image_url: width:"500x500" }}" alt="" height="" loading="lazy">
-    </div>
+    <div class="slide-show">
+      <div class="bg-wrapper">
+        {%if slide.settings.bg_img != blank%}
+          <img src="{{slide.settings.bg_img |  image_url: width:"500x500" }}" alt="" height="" loading="lazy">
+        {%endif%}
+         </div>
     <div class="content-wrapper">
       <div class="row">
         <div class="col-sm-6">
-            <h2>{{slide.settings.title}}</h2>
-            <p>{{slide.settings.sub_heading}}</p>
-            <input type="text" name="" id="" placeholder="Enter Your Email Address">
+           <div class="content-wrapper-inner">
+              <h2>{{slide.settings.title}}</h2>
+              <p>{{slide.settings.sub_heading}}</p>
+              <input type="text" name="" id="" placeholder="Enter Your Email Address">
+           </div>
         </div>
         <div class="col-sm-6">
-          <img src="{{slide.settings.right_image | image_url:500x500: }}" alt="" height="" loading=""/>
+          <img src="{{slide.settings.right_image |  image_url: width:"500x500" }}" alt="" height="" loading="lazy">
+          
         </div>
       </div>
+    </div>
     </div>
   {% endfor %}
   

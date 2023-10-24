@@ -254,9 +254,27 @@
             </div>
         </div>
         <div class="col py-3">
-           <div class="collecction-header py-3">
+          <div class="row">
+            <div class="col-sm-6">
               <h2 >{{collection.title}}</h2>
-           </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="sort-by">
+                  Collection Sort:
+              </label>
+              <select name="sort-by" id="sort-by">
+                {% for option in collection.sort_options %}
+                  <option value="{{ option.value }}"
+                    {%- if option.value == sort_by %}
+                        selected="selected"
+                    {%- endif %}>
+                    {{ option.name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          
            <div class="row">
             {%for product in collection.products %}
             <div class="col-sm-4">
